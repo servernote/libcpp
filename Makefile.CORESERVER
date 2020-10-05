@@ -1,0 +1,27 @@
+CXX	=	$(HOME)/.local/bin/g++
+CC_DBG	+=	-g -O2
+CC_OPT	+=	-D_GNU_SOURCE -D_USE_MYSQL
+CC_OPT	+=	-DLINUX -D_REENTRANT -D_FORTIFY_SOURCE=2 -fPIC -DPIC -fstack-protector-strong
+CC_OPT	+=	-Wformat -Werror=format-security -Wdate-time
+CC_INC	+=	-I$(HOME)/.local/include/c++
+CXXFLAGS	+=	$(CC_DBG) $(CC_OPT) $(CC_INC)
+SRCS	=	LFile.cpp LSocket.cpp LPgSQL.cpp LMySQL.cpp G.cpp LCgi.cpp
+OBJS	=	${SRCS:.cpp=.o}
+LD_LIBS	=	-L$(HOME)/.local/lib64 -L/usr/lib64/mysql -static-libstdc++ -static-libgcc -pthread -lm -lssl -lcrypto -lmysqlclient
+
+all:	.deps libcpp.a main.x
+
+.deps:
+	$(CXX) -M $(CXXFLAGS) $(SRCS) main.cpp > $@
+
+libcpp.a:	$(OBJS)
+	ar rv $@ $?
+	ranlib $@
+
+main.x:	main.cpp libcpp.a
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(LD_LIBS)
+
+clean:
+	rm -f *.o *.a *.so* *.x core .deps
+
+-include .deps

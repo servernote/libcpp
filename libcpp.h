@@ -36,6 +36,7 @@
 #include <array>
 #include <memory>
 #include <thread>
+#include <mutex>
 #include <algorithm>
 #include <functional>
 #include <unordered_map>

@@ -42,6 +42,7 @@
 #include <unordered_map>
 #include <utility>
 #include <iterator>
+#include <numeric>
 
 //defines
 #define strnull(x) (x == NULL || x[0] == '\0')

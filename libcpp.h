@@ -43,6 +43,7 @@
 #include <utility>
 #include <iterator>
 #include <numeric>
+#include <tuple>
 
 //defines
 #define strnull(x) (x == NULL || x[0] == '\0')

@@ -181,7 +181,6 @@ public:
 	static int addBigText( std::string &str,const char *fmt, ... );
 	static void wgs84ToTokyo( double lat_w,double lon_w,double *lat_t,double *lon_t );
 	static void tokyoToWgs84( double lat_t,double lon_t,double *lat_w,double *lon_w );
-	static int getDistance( int lat_fr, int lon_fr, int lat_to, int lon_to );
 	static double getDistance( double lat_fr, double lon_fr, double lat_to, double lon_to );
 	static void costText( int cost_num,char *cost_str );
 	static std::string trimingText( const std::string &src );

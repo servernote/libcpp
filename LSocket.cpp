@@ -117,11 +117,11 @@ int LSocket::writeString( std::string &str )
 
 void LSocket::read( void )
 {
-	char fnm[128],buf[1025],*ret_data; size_t ret_size,len; FILE *fp;
+	char fnm[128],buf[1025],*ret_data; int ret_size,len; FILE *fp;
 
 	if( mHandle < 0 ) return;
 
-	size_t capacity = 500000; //とりあえず500kbyte
+	int capacity = 500000; //とりあえず500kbyte
 
 	mData.clear();
 	mData.reserve( capacity );
